@@ -1,0 +1,17 @@
+{
+  "name": "EmojiTest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "grunt compile"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.2.2",
+    "google-closure-compiler": "^20170218.0.0",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
+    "grunt-cli": "^1.2.0",
+    "load-grunt-tasks": "^3.5.2"
+  }
+}
