@@ -60,11 +60,11 @@ if('emojione' in window) {
   let el = document.createElement('link');
   el.rel = "stylesheet";
   el.type = "text/css";
-  el.href = 'https://dl.kolya.co/bower_components/emojione/assets/css/emojione.min.css';
+  el.href = 'https://cdn.jsdelivr.net/emojione/2.2.7/assets/css/emojione.min.css';
   document.head.appendChild(el);
 
   let s = document.createElement('script');
-  s.src = 'https://dl.kolya.co/bower_components/emojione/lib/js/emojione.min.js';
+  s.src = 'https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js';
   s.async = true;
   s.onreadystatechange = s.onload = () => {
     if ((!s.readyState || /loaded|complete/.test(s.readyState))) {

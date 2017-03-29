@@ -1,4 +1,5 @@
 const grunt = require('grunt');
+const path = require('path');
 
 require('google-closure-compiler').grunt(grunt);
 require("load-grunt-tasks")(grunt);
@@ -12,9 +13,11 @@ module.exports = (grunt) => {
           'dist/Emoji.min.js': ['dist/Emoji.compiled.js']
         },
         options: {
-          compilation_level: 'SIMPLE',
+          compilation_level: 'ADVANCED',
           language_in: 'ECMASCRIPT5_STRICT',
-          create_source_map: 'dest/Emoji.min.js.map',
+          externs: path.join(__dirname, 'externs/externs.js'), // Don't rename the external functions
+          warning_level: 'QUIET',
+          create_source_map: 'dist/Emoji.min.js.map',
           output_wrapper: '(function(){%output%}).call(this);//# sourceMappingURL=output.min.js.map'
         }
       }
@@ -32,4 +35,6 @@ module.exports = (grunt) => {
   });
 
   grunt.registerTask("default", ["babel", "closure-compiler"]);
+  grunt.registerTask("closure", ["closure-compiler"]);
+  grunt.registerTask("compile", ["babel"])
 }
