@@ -69,15 +69,41 @@ var goReplace = function goReplace() {
         var original = emoji.innerHTML;
         var converted = emojione.toImage(original);
         var htmlData = parser.parseFromString(converted, "text/html");
-        var image = htmlData.querySelector('img.emojione');
-        var rexp = new RegExp(image.title, 'g');
-        var object = document.createElement('i');
-        object.style.backgroundColor = 'rgba(0,0,0,0)';
-        object.style.backgroundImage = 'url(' + image.src + ')';
-        object.style.backgroundSize = 'cover';
-        object.style.display = "inline-block";
-        object.setAttribute('class', image.getAttribute('class'));
-        emoji.outerHTML = emoji.outerHTML.replace(rexp, object.outerHTML);
+        var images = htmlData.querySelectorAll('img.emojione');
+        var _emojified = emoji.outerHTML;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
+
+        try {
+          for (var _iterator3 = images[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var _image = _step3.value;
+
+            var rexp = new RegExp(_image.title, 'g');
+            var object = document.createElement('i');
+            object.style.backgroundColor = 'rgba(0,0,0,0)';
+            object.style.backgroundImage = 'url(' + _image.src + ')';
+            object.style.backgroundSize = 'cover';
+            object.style.display = "inline-block";
+            object.setAttribute('class', _image.getAttribute('class'));
+            _emojified = _emojified.replace(rexp, object.outerHTML);
+          }
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+              _iterator3.return();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
+          }
+        }
+
+        emoji.outerHTML = _emojified;
       }
     } catch (err) {
       _didIteratorError2 = true;

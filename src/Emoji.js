@@ -39,15 +39,19 @@ const goReplace = () => {
       let original = emoji.innerHTML;
       let converted = emojione.toImage(original);
       let htmlData = parser.parseFromString(converted, "text/html");
-      let image = htmlData.querySelector('img.emojione');
-      let rexp = new RegExp(image.title, 'g');
-      let object = document.createElement('i');
-      object.style.backgroundColor = 'rgba(0,0,0,0)';
-      object.style.backgroundImage = 'url(' + image.src + ')';
-      object.style.backgroundSize = 'cover';
-      object.style.display = "inline-block";
-      object.setAttribute('class', image.getAttribute('class'));
-      emoji.outerHTML = emoji.outerHTML.replace(rexp, object.outerHTML);
+      let images = htmlData.querySelectorAll('img.emojione');
+      let _emojified = emoji.outerHTML;
+      for(let _image of images) {
+        let rexp = new RegExp(_image.title, 'g');
+        let object = document.createElement('i');
+        object.style.backgroundColor = 'rgba(0,0,0,0)';
+        object.style.backgroundImage = 'url(' + _image.src + ')';
+        object.style.backgroundSize = 'cover';
+        object.style.display = "inline-block";
+        object.setAttribute('class', _image.getAttribute('class'));
+        _emojified = _emojified.replace(rexp, object.outerHTML);
+      }
+      emoji.outerHTML = _emojified;
     }
   } else {
     fallback();
