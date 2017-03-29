@@ -13,5 +13,8 @@
     "grunt-babel": "^6.0.0",
     "grunt-cli": "^1.2.0",
     "load-grunt-tasks": "^3.5.2"
+  },
+  "dependencies": {
+    "grunt-text-replace": "^0.4.0"
   }
 }

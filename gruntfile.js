@@ -3,6 +3,7 @@ const path = require('path');
 
 require('google-closure-compiler').grunt(grunt);
 require("load-grunt-tasks")(grunt);
+grunt.loadNpmTasks('grunt-text-replace');
 
 // Project configuration.
 module.exports = (grunt) => {
@@ -31,10 +32,22 @@ module.exports = (grunt) => {
           "dist/Emoji.compiled.js": "src/Emoji.js"
         }
       }
+    },
+    'replace': {
+      standard: {
+        src: ['dist/Emoji.min.js'],
+        dest: 'dist/Emoji.min.js',
+        replacements: [
+          {
+            from: /\n/g,
+            to: '',
+          }
+        ]
+      }
     }
   });
 
-  grunt.registerTask("default", ["babel", "closure-compiler"]);
+  grunt.registerTask("default", ["babel", "closure-compiler", "replace"]);
   grunt.registerTask("closure", ["closure-compiler"]);
-  grunt.registerTask("compile", ["babel"])
+  grunt.registerTask("compile", ["babel", "replace"]);
 }
