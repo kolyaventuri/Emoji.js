@@ -4,6 +4,7 @@ const path = require('path');
 require('google-closure-compiler').grunt(grunt);
 require("load-grunt-tasks")(grunt);
 grunt.loadNpmTasks('grunt-text-replace');
+grunt.loadNpmTasks('grunt-contrib-concat');
 
 // Project configuration.
 module.exports = (grunt) => {
@@ -44,10 +45,19 @@ module.exports = (grunt) => {
           }
         ]
       }
+    },
+    'concat': {
+      options: {
+        separator: ';',
+      },
+      dist: {
+        src: ['node_modules/babel-polyfill/dist/polyfill.min.js', 'dist/Emoji.min.js'],
+        dest: 'dist/Emoji.min.js',
+      },
     }
   });
 
-  grunt.registerTask("default", ["babel", "closure-compiler", "replace"]);
-  grunt.registerTask("closure", ["closure-compiler"]);
-  grunt.registerTask("compile", ["babel", "replace"]);
+  grunt.registerTask("default", ["babel", "closure-compiler", "concat", "replace"]);
+  grunt.registerTask("closure", ["closure-compiler",  "replace"]);
+  grunt.registerTask("compile", ["babel"]);
 }
