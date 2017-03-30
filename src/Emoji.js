@@ -10,7 +10,7 @@
 *
 */
 
-import _ from 'lodash';
+import _ from 'lodash/collection';
 
 const bind = () => {
   if(document.readyState === 'complete') {

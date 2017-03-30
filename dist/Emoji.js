@@ -1,8 +1,8 @@
 'use strict';
 
-var _lodash = require('lodash');
+var _collection = require('lodash/collection');
 
-var _lodash2 = _interopRequireDefault(_lodash);
+var _collection2 = _interopRequireDefault(_collection);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,7 +27,7 @@ var bind = function bind() {
 var goReplace = function goReplace() {
   var emojis = document.querySelectorAll(window.emojiClass ? window.emojiClass.join(',') : '.emoji');
   var fallback = function fallback() {
-    _lodash2.default.forEach(emojis, function (emoji) {
+    _collection2.default.forEach(emojis, function (emoji) {
       var original = emoji.innerHTML;
       var converted = emojione.toImage(original);
       emoji.outerHTML = converted;
@@ -41,14 +41,14 @@ var goReplace = function goReplace() {
       fallback();
     }
 
-    _lodash2.default.forEach(emojis, function (emoji) {
+    _collection2.default.forEach(emojis, function (emoji) {
       var original = emoji.innerHTML;
       var converted = emojione.toImage(original);
       var htmlData = parser.parseFromString(converted, "text/html");
       var images = htmlData.querySelectorAll('img.emojione');
       var _emojified = emoji.outerHTML;
 
-      _lodash2.default.forEach(images, function (_image) {
+      _collection2.default.forEach(images, function (_image) {
         var rexp = new RegExp(_image.title, 'g');
         var object = document.createElement('i');
         object.style.backgroundColor = 'rgba(0,0,0,0)';
