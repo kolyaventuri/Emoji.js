@@ -10,6 +10,8 @@
 *
 */
 
+import _ from 'lodash';
+
 const bind = () => {
   if(document.readyState === 'complete') {
     goReplace();
@@ -21,11 +23,11 @@ const bind = () => {
 const goReplace = () => {
   let emojis = document.querySelectorAll(window.emojiClass ? window.emojiClass.join(',') : '.emoji');
   let fallback = () => {
-    for(let emoji of emojis) {
+    _.forEach(emojis, (emoji) => {
       let original = emoji.innerHTML;
       let converted = emojione.toImage(original);
       emoji.outerHTML = converted;
-    }
+    });
   };
   if('DOMParser' in window) {
     let parser = new DOMParser();
@@ -35,13 +37,14 @@ const goReplace = () => {
       }
     } catch (ex) {fallback();}
 
-    for(let emoji of emojis) {
+    _.forEach(emojis, (emoji) => {
       let original = emoji.innerHTML;
       let converted = emojione.toImage(original);
       let htmlData = parser.parseFromString(converted, "text/html");
       let images = htmlData.querySelectorAll('img.emojione');
       let _emojified = emoji.outerHTML;
-      for(let _image of images) {
+
+      _.forEach(images, (_image) => {
         let rexp = new RegExp(_image.title, 'g');
         let object = document.createElement('i');
         object.style.backgroundColor = 'rgba(0,0,0,0)';
@@ -50,9 +53,10 @@ const goReplace = () => {
         object.style.display = "inline-block";
         object.setAttribute('class', _image.getAttribute('class'));
         _emojified = _emojified.replace(rexp, object.outerHTML);
-      }
+      });
+
       emoji.outerHTML = _emojified;
-    }
+    });
   } else {
     fallback();
   }

@@ -1,22 +1,17 @@
 {
-  "name": "EmojiTest",
+  "name": "Emoji.js",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "build": "grunt compile"
-  },
   "devDependencies": {
-    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.2.2",
-    "google-closure-compiler": "^20170218.0.0",
     "grunt": "^1.0.1",
     "grunt-babel": "^6.0.0",
-    "grunt-cli": "^1.2.0",
-    "load-grunt-tasks": "^3.5.2"
+    "grunt-webpack": "^2.0.1",
+    "load-grunt-tasks": "^3.5.2",
+    "webpack": "^2.3.2"
   },
   "dependencies": {
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-text-replace": "^0.4.0"
+    "lodash": "^4.17.4"
   }
 }
