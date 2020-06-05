@@ -1,3 +1,5 @@
+_Archived_ The EmojiOne project has turned into JoyPixels. Due to the no-longer-free nature of JoyPixels, this project has been archived.
+
 # Emoji.js
 
 Add Emoji to your website in seconds!
